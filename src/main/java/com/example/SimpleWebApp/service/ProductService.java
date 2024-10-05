@@ -22,4 +22,14 @@ public class ProductService {
     public List<Product> getProducts() {
         return products; // Return the product list instead of null
     }
+
+    public Product getProductById(int prodId){
+        for (Product product : products) {
+            if (product.getProdId() == prodId) {
+                return product;
+            }
+        }
+        // If not found
+        return null;
+    }
 }
