@@ -1,7 +1,7 @@
-package com.example.SimpleWebApp.controller;
+package com.example.WebApp.controller;
 
-import com.example.SimpleWebApp.model.Product;
-import com.example.SimpleWebApp.service.ProductService;
+import com.example.WebApp.model.Product;
+import com.example.WebApp.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

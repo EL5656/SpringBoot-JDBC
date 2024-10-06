@@ -1,6 +1,6 @@
-package com.example.SimpleWebApp.service;
+package com.example.WebApp.service;
 
-import com.example.SimpleWebApp.model.Product;
+import com.example.WebApp.model.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
