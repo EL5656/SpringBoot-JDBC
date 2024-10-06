@@ -1,6 +1,8 @@
 package com.example.WebApp.service;
 
 import com.example.WebApp.model.Product;
+import com.example.WebApp.repository.ProductRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,61 +10,35 @@ import java.util.List;
 
 @Service
 public class ProductService {
-    // Dummy product list
-     List<Product> products;
+    @Autowired
+    ProductRepo repo;
+     //List<Product> products;
 
-    ProductService(){
-        products = new ArrayList<>();
-        products.add(new Product(1, "Laptop", 3999.99));
-        products.add(new Product(2, "Desktop", 1879.99));
-        products.add(new Product(3, "Tablet", 2649.99));
-    }
+//    ProductService(){
+//        products = new ArrayList<>();
+//        products.add(new Product(1, "Laptop", 3999.99));
+//        products.add(new Product(2, "Desktop", 1879.99));
+//        products.add(new Product(3, "Tablet", 2649.99));
+//    }
 
     // Method to return the list of products
     public List<Product> getProducts() {
-        return products; // Return the product list instead of null
+        return repo.findAll();
     }
 
     public Product getProductById(int prodId){
-        for (Product product : products) {
-            if (product.getProdId() == prodId) {
-                return product;
-            }
-        }
-        // If not found
-        return null;
+        return repo.findById(prodId).orElse(new Product());//orElse blank object
     }
 
     public void addProduct(Product prod){
-        products.add(prod);
-    }
-
-    public int getProductIndex(int prodId) {
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getProdId() == prodId) {
-                return i;
-            }
-        }
-        return -1;
+        repo.save(prod);
     }
 
     public void updateProduct(Product prod){
-        int prodId = prod.getProdId();
-        int index = getProductIndex(prodId);
-        if(index!=-1){
-            products.set(index, prod);
-        }
-//        for(int i=0;i<products.size();i++){
-//            if(products.get(i).getProdId()==prod.getProdId()){
-//                products.set(i,prod);
-//            }
-//        }
+        repo.save(prod);
     }
 
     public void deleteProduct(int prodId){
-        int index = getProductIndex(prodId);
-        if(index!=-1){
-            products.remove(index);
-        }
+       repo.deleteById(prodId);
     }
 }
