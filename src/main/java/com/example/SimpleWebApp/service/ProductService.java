@@ -32,4 +32,8 @@ public class ProductService {
         // If not found
         return null;
     }
+
+    public void addProduct(Product prod){
+        products.add(prod);
+    }
 }
