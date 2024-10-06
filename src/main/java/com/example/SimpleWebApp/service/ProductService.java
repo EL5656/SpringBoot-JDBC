@@ -58,4 +58,11 @@ public class ProductService {
 //            }
 //        }
     }
+
+    public void deleteProduct(int prodId){
+        int index = getProductIndex(prodId);
+        if(index!=-1){
+            products.remove(index);
+        }
+    }
 }
