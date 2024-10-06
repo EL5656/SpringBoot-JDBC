@@ -37,11 +37,25 @@ public class ProductService {
         products.add(prod);
     }
 
-    public void updateProduct(Product prod){
-        for(int i=0;i<products.size();i++){
-            if(products.get(i).getProdId()==prod.getProdId()){
-                products.set(i,prod);
+    public int getProductIndex(int prodId) {
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getProdId() == prodId) {
+                return i;
             }
         }
+        return -1;
+    }
+
+    public void updateProduct(Product prod){
+        int prodId = prod.getProdId();
+        int index = getProductIndex(prodId);
+        if(index!=-1){
+            products.set(index, prod);
+        }
+//        for(int i=0;i<products.size();i++){
+//            if(products.get(i).getProdId()==prod.getProdId()){
+//                products.set(i,prod);
+//            }
+//        }
     }
 }
